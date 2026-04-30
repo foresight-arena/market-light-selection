@@ -1,0 +1,16 @@
+# Secrets
+.env
+
+# Dependencies
+node_modules/
+
+dist/
+*.log
+.DS_Store
+
+# Verification / runtime log dumps
+logs/
+
+# Runtime outputs (mutate per-environment)
+data/served-events.json
+data/last-run-debug.json

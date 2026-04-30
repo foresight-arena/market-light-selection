@@ -1,0 +1,23 @@
+{
+  "name": "lightweight-polymarket-selector",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "create-round": "tsx scripts/create-round.ts",
+    "create-round:dry-run": "tsx scripts/create-round.ts --dry-run"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.0",
+    "viem": "^2.47.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
