@@ -1,7 +1,12 @@
 import path from "node:path";
 import { writeJsonFile } from "./util/file.js";
 import { systemClock } from "./util/clock.js";
-import { getGammaPageSize, getMaxPages, getSelectionBudgetMs } from "./config.js";
+import {
+  getGammaPageSize,
+  getMaxPages,
+  getSelectionBudgetMs,
+  getSportsResolutionBufferMs,
+} from "./config.js";
 import { selectMarkets } from "./selector/select-markets.js";
 import {
   appendServedEvents,
@@ -43,6 +48,7 @@ export async function executeSelect(
     maxPages: maxPages ?? getMaxPages(),
     pageSize: pageSize ?? getGammaPageSize(),
     selectionBudgetMs: getSelectionBudgetMs(),
+    sportsGameBufferMs: getSportsResolutionBufferMs(),
     servedStableIds,
     clock: systemClock,
   });

@@ -23,6 +23,12 @@ export type SelectMarketsOptions = {
   pageSize: number;
   /** Wall-clock budget for the whole selection; checked between page fetches. */
   selectionBudgetMs: number;
+  /**
+   * Buffer added to `gameStartTime` when computing a sports market's effective
+   * resolution time (max(endDate, gameStartTime + buffer)). 0 disables the
+   * sports adjustment entirely.
+   */
+  sportsGameBufferMs?: number;
   servedStableIds: Set<string>;
   clock: Clock;
   gammaQuery?: Partial<EventsQueryParams>;
@@ -152,7 +158,7 @@ export async function selectMarkets(
         return;
       }
 
-      const rep = pickRepresentativeMarket(event, now, innerTotals);
+      const rep = pickRepresentativeMarket(event, now, innerTotals, opts.sportsGameBufferMs ?? 0);
       if (!rep) {
         candidateEventsSkippedNoValidMarket++;
         return;

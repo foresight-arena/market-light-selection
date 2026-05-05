@@ -50,6 +50,7 @@ npm run create-round:dry-run
 | `GAMMA_PAGE_SIZE` | no | `/events` `limit` per page (default `100`). |
 | `GAMMA_DISABLE_END_DATE_FILTER` | no | Set to `1` to omit `end_date_min` / `end_date_max` on Gamma. |
 | `SELECTION_BUDGET_MS` | no | Wall-clock budget for selection, checked between pages (default `45000`). |
+| `SPORTS_RESOLUTION_BUFFER_HOURS` | no | For markets with `gameStartTime`, the effective resolution time is `max(endDate, gameStartTime + buffer)`. Covers game length + UMA propose/liveness. Default `6`, range `0–24`. |
 | `LIGHTWEIGHT_SELECTOR_DATA_DIR` | no | Where `served-events.json` lives (default `./data`). |
 
 ## Selection Behavior

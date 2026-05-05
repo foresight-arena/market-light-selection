@@ -35,3 +35,15 @@ export function getSelectionBudgetMs(): number {
   if (Number.isFinite(n) && n >= 1000 && n <= 600_000) return Math.floor(n);
   return 45_000;
 }
+
+/**
+ * For sports markets exposing `gameStartTime`, the effective resolution time
+ * used in the 48–72h window check is `max(endDate, gameStartTime + buffer)`.
+ * Buffer covers game length + UMA propose/liveness. Default 6h (~3h game + ~3h UMA).
+ * Env: `SPORTS_RESOLUTION_BUFFER_HOURS` (default `6`, min `0`, max `24`).
+ */
+export function getSportsResolutionBufferMs(): number {
+  const n = Number(process.env.SPORTS_RESOLUTION_BUFFER_HOURS);
+  const hours = Number.isFinite(n) && n >= 0 && n <= 24 ? n : 6;
+  return hours * 60 * 60 * 1000;
+}
