@@ -52,14 +52,15 @@ function competitiveNum(m: GammaMarket, e: GammaEvent): number {
 export function pickRepresentativeMarket(
   event: GammaEvent,
   nowMs: number,
-  aggregateInner?: RepresentativeInnerStats
+  aggregateInner?: RepresentativeInnerStats,
+  sportsGameBufferMs = 0
 ): { market: GammaMarket; resolutionEndMs: number } | null {
   const local = emptyInnerStats();
   const markets = Array.isArray(event.markets) ? event.markets : [];
   const viable: { market: GammaMarket; resolutionEndMs: number }[] = [];
 
   for (const market of markets) {
-    const end = resolutionEndMs(market, event, nowMs);
+    const end = resolutionEndMs(market, event, nowMs, sportsGameBufferMs);
     if (end === null || !isInResolutionWindow(end, nowMs)) {
       local.inner_markets_skipped_outside_window++;
       continue;
